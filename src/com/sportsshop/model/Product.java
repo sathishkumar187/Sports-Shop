@@ -10,42 +10,42 @@ public class Product {
     private Date   manufactureDate;
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getBrand() {
-	return brand;
+        return brand;
     }
 
     public void setBrand(String brand) {
-	this.brand = brand;
+        this.brand = brand;
     }
 
     public float getPrice() {
-	return price;
+        return price;
     }
 
     public void setPrice(float price) {
-	this.price = price;
-    }
-	
+        this.price = price;
+	}
+
     public char getSize() {
-	return size;
+        return size;
     }
 
     public void setSize(char size) {
-	this.size = size;
+        this.size = size;
     }
 
     public Date getManufactureDate() {
-	return manufactureDate;
+        return manufactureDate;
     }
 
     public void setManufactureDate(Date manufactureDate) {
-	this.manufactureDate = manufactureDate;
+        this.manufactureDate = manufactureDate;
     }
 }
