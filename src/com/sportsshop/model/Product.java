@@ -3,7 +3,7 @@ package com.sportsshop.model;
 import java.util.Date;
 
 public class Product {
-	private String name;
+    private String name;
 	private String brand;
 	private float  price;
 	private char   size;
