@@ -1,10 +1,14 @@
 package com.sportsshop.view;
 
 import com.sportsshop.controller.ShopKeeper;
-
+/**
+ * Customer class of the sports shop.
+ */
 public class Customer {
-
-    void selectAnyProduct() {
+    /**
+     * To select the product by customer.
+     */
+    void selectProduct() {
         System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
         String brand = Validations.validateBrand(SportsShop.SCANNER.next());
 		

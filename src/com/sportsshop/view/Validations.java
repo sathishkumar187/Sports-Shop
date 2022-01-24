@@ -3,9 +3,15 @@ package com.sportsshop.view;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
+/**
+ * To validate the user inputed data.
+ */
 public class Validations {
-
+    /**
+     * It validates the selected operation by the user.
+     * @param operation
+     * @return validated operation by int.
+     */
     static int validateOperation(String operation) {
 		
         if (operation.matches("[1-5]")) {
@@ -16,7 +22,11 @@ public class Validations {
             return validateOperation(SportsShop.SCANNER.nextLine());
         }
     }
-
+    /**
+     * It validates the product name is given by the client.
+     * @param name
+     * @return validated name by String.
+     */
     static String validateName(String name) {
 		
         if (name.matches("Bat|Ball|Stump")) {
@@ -27,7 +37,11 @@ public class Validations {
             return validateName(SportsShop.SCANNER.next());
         }
     }
-
+     /**
+     * It validates the product brand is given by the client.
+     * @param brandName
+     * @return validated brand name by String.
+     */
     static String validateBrand(String brandName) {
 		
         if (brandName.matches("SS|SG|MRF|RBK|NIKE")) {
@@ -38,7 +52,11 @@ public class Validations {
             return validateBrand(SportsShop.SCANNER.next());
         }
     }
-
+     /**
+     * It validates the product price is given by the client.
+     * @param price
+     * @return validated price by float.
+     */
     static float validatePrice(String price) {
 		
         if (price.matches("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")) {
@@ -49,7 +67,11 @@ public class Validations {
             return validatePrice(SportsShop.SCANNER.next());
         }
     }
-
+     /**
+     * It validates the product size is given by the client.
+     * @param size
+     * @return validated size by char.
+     */
     static char validateSize(String size) {
 		
         if (size.matches("S|M|L")) {
@@ -60,7 +82,11 @@ public class Validations {
             return validateSize(SportsShop.SCANNER.next());
         }
     }
-	
+	/**
+     * It validates the manufacture date of product.
+     * @param inputDate
+     * @return validated manufacture date by Date
+     */
     static Date validateDate(String inputDate) {
 		
         try {

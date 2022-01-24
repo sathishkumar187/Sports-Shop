@@ -6,10 +6,16 @@ import java.util.Scanner;
 
 import com.sportsshop.controller.ShopKeeper;
 import com.sportsshop.model.Product;
-
+/**
+ * The shop application for sports-kits using CRUD operations - Create, Read, Update, Delete. 
+ */
 public class SportsShop  {
     public static final Scanner SCANNER = new Scanner(System.in);
-
+    /**
+     * To start the entire application.
+     * Option is getting from the user.
+     * @param args 
+     */
     public static void main(String[] args) {
         int operation;
 		
@@ -22,7 +28,7 @@ public class SportsShop  {
                 SportsShop.addProduct();
                 break;
             case 2:
-                SportsShop.selectProduct();
+                SportsShop.selectAnyProduct();
                 break;
             case 3:
                 SportsShop.updateProductPrice();
@@ -36,7 +42,9 @@ public class SportsShop  {
             }
         } while (true);
     }
-
+    /**
+     * Add the new product by the owner side.  
+     */
     private static final void addProduct() {
         final Product product = new Product();
 
@@ -57,14 +65,18 @@ public class SportsShop  {
 
         ShopKeeper.addProduct(product.getBrand(), product);
     }
-
-    private static final void selectProduct() {
+    /**
+     * To call the customer for select any product. 
+     */
+    private static final void selectAnyProduct() {
         System.out.println("Select Any Product");
         Customer customer = new Customer();
 
-        customer.selectAnyProduct();
+        customer.selectProduct();
     }
-
+    /**
+     * To update the product price.
+     */
     private static final void updateProductPrice() {
         System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
         String brand = Validations.validateBrand(SCANNER.next());
@@ -80,7 +92,9 @@ public class SportsShop  {
 
         ShopKeeper.updateProductPrice(brand, name, size, price);
     }
-
+    /**
+     * To remove the product.
+     */
     private static final void removeProduct() {
         System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
         String brand = Validations.validateBrand(SCANNER.next());
@@ -93,7 +107,10 @@ public class SportsShop  {
 
         ShopKeeper.removeProduct(brand, name, size);
     }
-
+    /**
+     * To show all the available products.
+     * @param sportsKits
+     */
     public static final void showAllProducts(Map<String, List<Product>> sportsKits) {
 
         if (sportsKits != null) {
@@ -115,7 +132,10 @@ public class SportsShop  {
             System.out.println("\n  Product Not In Crew");
         }
     }
-
+    /**
+     * To show the Selected Product.
+     * @param product
+     */
     public static final void showSelectedProduct(Product product) {
 
         if (product != null) {

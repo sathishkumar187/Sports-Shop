@@ -1,7 +1,9 @@
 package com.sportsshop.model;
 
 import java.util.Date;
-
+/**
+ * Store all the details of a product and it provides the single object.
+ */
 public class Product {
     private String name;
     private String brand;

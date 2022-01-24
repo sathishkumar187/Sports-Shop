@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.sportsshop.model.Product;
-
+/**
+ * These Services are provided by sports shop application.
+ */
 public interface ShopServices {
 	
     Map<String, List<Product>> addProduct(String productBrand, Product product);

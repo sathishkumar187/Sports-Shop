@@ -6,11 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.sportsshop.model.Product;
-
+/**
+ * It implements the services provided by the Shop application.
+ */
 public class ShopServiceImplementation implements ShopServices {
     private static final Map<String, List<Product>> SPORTS_KITS = new HashMap<>();
     private static final List<Product> SPORTS_PRODUCTS = new ArrayList<>();
-
+    /**
+     * It adds the product to sports shop.
+     */
     public Map<String, List<Product>> addProduct(String brand, Product product) {
 
         if (!SPORTS_KITS.containsKey(brand)) {
@@ -22,7 +26,9 @@ public class ShopServiceImplementation implements ShopServices {
         }
         return SPORTS_KITS;
     }
-
+    /**
+     * It selects the product is requested by customer.
+     */
     public Product selectProduct(String brand, String name, char size) {
 
         if (SPORTS_KITS.containsKey(brand)) {
@@ -37,7 +43,9 @@ public class ShopServiceImplementation implements ShopServices {
         }
         return null;
     }
-
+    /**
+     * To update the product price is given by shop owner.
+     */
     public Map<String, List<Product>> updateProductPrice(String brand, String name, char size, float price) {
         Product product = selectProduct(brand, name, size);
 
@@ -47,7 +55,9 @@ public class ShopServiceImplementation implements ShopServices {
         }
         return null;
     }
-
+    /**
+     * To remove the product in the sports shop.
+     */
     public Map<String, List<Product>> removeProduct(String brand, String name, char size) {
         Product product = selectProduct(brand, name, size);
 
