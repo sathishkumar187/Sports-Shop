@@ -6,16 +6,13 @@ import java.util.Scanner;
 
 import com.sportsshop.controller.ShopKeeper;
 import com.sportsshop.model.Product;
+
 /**
  * The shop application for sports-kits using CRUD operations - Create, Read, Update, Delete. 
  */
 public class SportsShop  {
     public static final Scanner SCANNER = new Scanner(System.in);
-    /**
-     * To start the entire application.
-     * Option is getting from the user.
-     * @param args 
-     */
+   
     public static void main(String[] args) {
         int operation;
 		
@@ -42,8 +39,9 @@ public class SportsShop  {
             }
         } while (true);
     }
+
     /**
-     * Add the new product by the owner side.  
+     * To add the new product.  
      */
     private static final void addProduct() {
         final Product product = new Product();
@@ -51,7 +49,7 @@ public class SportsShop  {
         System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
         product.setBrand(Validations.validateBrand(SCANNER.next()));
 
-        System.out.println("Mention Product Name(Bat, Ball, Stump)");
+        System.out.println("Mention Product Name(Bat, Ball, Stump, Gloves, Helmet)");
         product.setName(Validations.validateName(SCANNER.next()));
 
         System.out.println("Mention Product Price");
@@ -63,8 +61,9 @@ public class SportsShop  {
         System.out.println("Mention Manufacture Date(YYYY-MM-DD)");
         product.setManufactureDate(Validations.validateDate(SCANNER.next()));
 
-        ShopKeeper.addProduct(product.getBrand(), product);
+        ShopKeeper.addProduct(product);
     }
+
     /**
      * To call the customer for select any product. 
      */
@@ -74,39 +73,46 @@ public class SportsShop  {
 
         customer.selectProduct();
     }
+
     /**
      * To update the product price.
      */
     private static final void updateProductPrice() {
-        System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
-        String brand = Validations.validateBrand(SCANNER.next());
+        final Product product = new Product();
 
-        System.out.println("Mention Product Name(Bat, Ball, Stump)");
-        String name = Validations.validateName(SCANNER.next());
+        System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
+        product.setBrand(Validations.validateBrand(SCANNER.next()));
+
+        System.out.println("Mention Product Name(Bat, Ball, Stump, Gloves, Helmet)");
+        product.setName(Validations.validateName(SCANNER.next()));
 
         System.out.println("Mention Product Size(S, M, L)");
-        char size = Validations.validateSize(SCANNER.next());
+        product.setSize(Validations.validateSize(SCANNER.next()));
 
         System.out.println("Mention Product Price");
-        float price = Validations.validatePrice(SCANNER.next());
+        product.setPrice(Validations.validatePrice(SCANNER.next()));
 
-        ShopKeeper.updateProductPrice(brand, name, size, price);
+        ShopKeeper.updateProductPrice(product);
     }
+
     /**
      * To remove the product.
      */
     private static final void removeProduct() {
-        System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
-        String brand = Validations.validateBrand(SCANNER.next());
+        final Product product = new Product();
 
-        System.out.println("Mention Product Name(Bat, Ball, Stump)");
-        String name = Validations.validateName(SCANNER.next());
+        System.out.println("Mention Product Brand(SS, SG, MRF, RBK, NIKE)");
+        product.setBrand(Validations.validateBrand(SCANNER.next()));
+
+        System.out.println("Mention Product Name(Bat, Ball, Stump, Gloves, Helmet)");
+        product.setName(Validations.validateName(SCANNER.next()));
 
         System.out.println("Mention Product Size(S, M, L)");
-        char size = Validations.validateSize(SCANNER.next());
+        product.setSize(Validations.validateSize(SCANNER.next()));
 
-        ShopKeeper.removeProduct(brand, name, size);
+        ShopKeeper.removeProduct(product);
     }
+
     /**
      * To show all the available products.
      * @param sportsKits
@@ -116,22 +122,22 @@ public class SportsShop  {
         if (sportsKits != null) {
 
             for (String productBrand : sportsKits.keySet()) {
-                System.out.println(new StringBuilder().append("\n ").append(productBrand).append(" Brand :"));
+                System.out.println(String.format("%s %s %s","\n ",productBrand," Brand :"));
 
                 for (Product product : sportsKits.get(productBrand)) {
 
                     if (product.getBrand().equals(productBrand)) {
-                        System.out.println(new StringBuilder().append("\n { Product Name : ").append(product.getName()).append("\n   Product Price : ")
-                            .append(product.getPrice()).append("\n   Product Size : ").append(product.getSize())
-                            .append("\n   Manufacture Date : ").append(product.getManufactureDate()).append(" }").toString());
+                        System.out.println(String.format("%s %s %s %f %s %c %s %s %s","\n { Product Name : ",
+                            product.getName(),"\n   Product Price : ",product.getPrice(),"\n   Product Size : ",
+                            product.getSize(),"\n   Manufacture Date : ",product.getManufactureDate().toString()," }"));
                     }
                 }
             }
-        }
-        else {
+        } else {
             System.out.println("\n  Product Not In Crew");
         }
     }
+
     /**
      * To show the Selected Product.
      * @param product
@@ -139,12 +145,11 @@ public class SportsShop  {
     public static final void showSelectedProduct(Product product) {
 
         if (product != null) {
-            System.out.println(new StringBuilder().append("\n Product Details : \n  Product Name : ").append(product.getName())
-                .append("\n  Product Brand : ").append(product.getBrand()).append("\n  Product Price : ")
-                .append(product.getPrice()).append("\n  Product Size : ").append(product.getSize())
-                .append("\n  Manufacture Date : ").append(product.getManufactureDate()).toString());
-        }
-        else {
+            System.out.println(String.format("%s %s %s %s %s %f %s %c %s %s","\n Product Details : \n  Product Name : ",
+                product.getName(),"\n  Product Brand : ",product.getBrand(),"\n  Product Price : ",
+                product.getPrice(),"\n  Product Size : ",product.getSize(),"\n  Manufacture Date : ",
+                product.getManufactureDate()).toString());
+        } else {
             System.out.println("\n  Product Not In Crew");
         }
     }
