@@ -2,6 +2,7 @@ package com.sportsshop.service;
 
 import java.util.List;
 
+import com.sportsshop.customexceptions.InvalidProductException;
 import com.sportsshop.model.Product;
 
 /**

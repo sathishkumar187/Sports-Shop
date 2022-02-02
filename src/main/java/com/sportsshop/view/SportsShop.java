@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.sportsshop.controller.ShopKeeper;
+import com.sportsshop.customexceptions.InvalidProductException;
 import com.sportsshop.model.Product;
-import com.sportsshop.service.InvalidProductException;
 
 /**
  * The shop application for sports-kits using CRUD operations - Create, Read, Update, Delete. 
@@ -13,12 +13,11 @@ import com.sportsshop.service.InvalidProductException;
 public class SportsShop  {
     public static final Scanner SCANNER = new Scanner(System.in);
     
-    public static void main(String[] args) throws InvalidProductException {
-        int operation;
+    public static void main(String[] args) {
 		
         do {
-            System.out.println("\n Operations \n  1.Add Product \n  2.Select Product \n  3.Update Product Price \n  4.Remove Product \n  5.Exit \n   Select Any Operation");
-            operation = Validations.validateOperation(SCANNER.next());
+            System.out.println("\n Operations \n  1.Add Product \n  2.Select Product \n  3.Update Product Price \n  4.Remove Product \n  5.Select All Products \n  6.Exit \n   Select Any Operation");
+            final int operation = Validations.validateOperation(SCANNER.next());
 
             switch (operation) {
             case 1:
@@ -72,7 +71,7 @@ public class SportsShop  {
      * To call the customer for select any product. 
      * @throws InvalidProductException 
      */
-    private static final void selectAnyProduct() throws InvalidProductException {
+    private static final void selectAnyProduct() {
         System.out.println("Select Any Product");
         Customer customer = new Customer();
 
@@ -83,7 +82,7 @@ public class SportsShop  {
      * To update the product price.
      * @throws InvalidProductException 
      */
-    private static final void updateProductPrice() throws InvalidProductException {
+    private static final void updateProductPrice() {
         final Product product = new Product();
         final ShopKeeper shopKeeper = new ShopKeeper();
         
@@ -98,15 +97,19 @@ public class SportsShop  {
 
         System.out.println("Mention Product Price");
         product.setPrice(Validations.validatePrice(SCANNER.next()));
-
-        shopKeeper.updateProductPrice(product);
+        
+        try {
+        	shopKeeper.updateProductPrice(product);
+        } catch (InvalidProductException exception) {
+			System.out.println("Product Not In Crew");
+        }
     }
 
     /**
      * To remove the product.
      * @throws InvalidProductException 
      */
-    private static final void removeProduct() throws InvalidProductException {
+    private static final void removeProduct() {
         final Product product = new Product();
         final ShopKeeper shopKeeper = new ShopKeeper();
         
@@ -119,7 +122,11 @@ public class SportsShop  {
         System.out.println("Mention Product Size(S, M, L)");
         product.setSize(Validations.validateSize(SCANNER.next()));
 
-        shopKeeper.removeProduct(product);
+        try {
+        	shopKeeper.removeProduct(product);
+    	} catch (InvalidProductException exception) {
+    		System.out.println("Product Not In Crew");
+    	}
     }
     
     /**

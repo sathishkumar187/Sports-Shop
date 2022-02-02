@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.sportsshop.customexceptions.InvalidProductException;
 import com.sportsshop.model.Product;
 
 /**
@@ -44,7 +45,7 @@ public class ShopServiceImplementation implements ShopServices {
 				}
 			}
 		} else {
-			throw new InvalidProductException("Product Not In Crew");
+			throw new InvalidProductException();
 		}
 		return null;
 	}
@@ -60,7 +61,7 @@ public class ShopServiceImplementation implements ShopServices {
 			productDetails.setPrice(product.getPrice());
 			return productDetails;
 		} else {
-			throw new InvalidProductException("Product Not In Crew");
+			throw new InvalidProductException();
 		}
 	}
 
@@ -75,7 +76,7 @@ public class ShopServiceImplementation implements ShopServices {
 			SPORTS_KITS.get(product.getBrand()).remove(productDetails);
 			return productDetails;
 		} else {
-			throw new InvalidProductException("Product Not In Crew");
+			throw new InvalidProductException();
 		}
 	}
 	
