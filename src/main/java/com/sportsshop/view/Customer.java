@@ -29,7 +29,7 @@ public class Customer {
         try {
             shopKeeper.selectProduct(product);
         } catch (InvalidProductException exception) {
-            System.out.println("Product Not In Crew");
+            System.out.println(exception);
         }
     }
 }
