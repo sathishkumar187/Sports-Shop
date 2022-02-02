@@ -79,8 +79,7 @@ public class SportsShop  {
     }
 
     /**
-     * To update the product price.
-     * @throws InvalidProductException 
+     * To update the product price. 
      */
     private static final void updateProductPrice() {
         final Product product = new Product();
@@ -101,13 +100,12 @@ public class SportsShop  {
         try {
             shopKeeper.updateProductPrice(product);
         } catch (InvalidProductException exception) {
-            System.out.println("Product Not In Crew");
+            System.out.println(exception);
         }
     }
 
     /**
      * To remove the product.
-     * @throws InvalidProductException 
      */
     private static final void removeProduct() {
         final Product product = new Product();
@@ -125,7 +123,7 @@ public class SportsShop  {
         try {
             shopKeeper.removeProduct(product);
     	} catch (InvalidProductException exception) {
-            System.out.println("Product Not In Crew");
+            System.out.println(exception);
     	}
     }
     
