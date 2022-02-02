@@ -42,7 +42,7 @@ public class ShopServiceImplementationV2 implements ShopServices {
 		    && productDetails.getSize() == product.getSize()) {
 	        return productDetails;
 	    } else {
-		throw new InvalidProductException();
+		throw new InvalidProductException("Product Not In Crew");
 	    }
 	}
 	return null;
