@@ -12,20 +12,20 @@ public class Product {
     private char   size;
     private Date   manufactureDate;
 
-	public Product() {
-		super();
-	}
+    public Product() {
+	super();
+    }
 
-	public Product(String name, String brand, double price, char size, Date manufactureDate) {
-		super();
-		this.name = name;
-		this.brand = brand;
-		this.price = price;
-		this.size = size;
-		this.manufactureDate = manufactureDate;
-	}
+    public Product(String name, String brand, double price, char size, Date manufactureDate) {
+	super();
+	this.name = name;
+	this.brand = brand;
+	this.price = price;
+	this.size = size;
+	this.manufactureDate = manufactureDate;
+    }
 
-	public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -47,7 +47,7 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-	}
+    }
 
     public char getSize() {
         return size;
