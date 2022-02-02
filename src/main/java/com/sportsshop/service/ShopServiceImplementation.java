@@ -44,7 +44,7 @@ public class ShopServiceImplementation implements ShopServices {
 	        }
             }
 	} else {
-	    throw new InvalidProductException();
+	    throw new InvalidProductException("Product Not In Crew");
 	}
 	return null;
     }
@@ -60,7 +60,7 @@ public class ShopServiceImplementation implements ShopServices {
 	    productDetails.setPrice(product.getPrice());
 	    return productDetails;
         } else {
-	    throw new InvalidProductException();
+	    throw new InvalidProductException("Product Not In Crew");
         }
     }    
 
@@ -75,7 +75,7 @@ public class ShopServiceImplementation implements ShopServices {
 	    SPORTS_KITS.get(product.getBrand()).remove(productDetails);
 	    return productDetails;
 	} else {
-	    throw new InvalidProductException();
+	    throw new InvalidProductException("Product Not In Crew");
 	}
     }    
 	
