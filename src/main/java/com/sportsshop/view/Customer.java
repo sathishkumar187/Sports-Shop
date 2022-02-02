@@ -26,10 +26,10 @@ public class Customer {
         System.out.println("Mention Product Size(S, M, L)");
         product.setSize(Validations.validateSize(SportsShop.SCANNER.next()));
         
-		try {
-			shopKeeper.selectProduct(product);
-		} catch (InvalidProductException exception) {
-			System.out.println("Product Not In Crew");
-		}
+        try {
+            shopKeeper.selectProduct(product);
+        } catch (InvalidProductException exception) {
+            System.out.println("Product Not In Crew");
+        }
     }
 }
