@@ -12,7 +12,7 @@ import com.sportsshop.model.Product;
  * It implements the services provided by the Shop application.
  */
 public class ShopServiceImplementation implements ShopServices {
-	private static final Map<String, List<Product>> SPORTS_KITS = new HashMap<String, List<Product>>();
+    private static final Map<String, List<Product>> SPORTS_KITS = new HashMap<String, List<Product>>();
 	
 	/**
 	 * It adds the product.
