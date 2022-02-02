@@ -19,26 +19,26 @@ public class ShopKeeper  {
     private static final ShopServices SHOP_SERVICE_IMPLEMENTATION_V2 = new ShopServiceImplementationV2();
     
     public void addProduct(Product product) {
-    	//SHOP_SERVICE_IMPLEMENTATION.addProduct(product);
+    	SHOP_SERVICE_IMPLEMENTATION.addProduct(product);
     	SHOP_SERVICE_IMPLEMENTATION_V2.addProduct(product);
     }
 
     public void selectProduct(Product product) throws InvalidProductException {
-		//SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.selectProduct(product));
-		SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.selectProduct(product));
+	SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.selectProduct(product));
+	SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.selectProduct(product));
     }
 
     public void updateProductPrice(Product product) throws InvalidProductException {
-        //SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.updateProductPrice(product));
+        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.updateProductPrice(product));
         SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.updateProductPrice(product));
     }
 
     public void removeProduct(Product product) throws InvalidProductException {
-        //SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.removeProduct(product));
+        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.removeProduct(product));
         SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.removeProduct(product));
     }
 
-	public List<Product> selectAllProducts() {
-		return SHOP_SERVICE_IMPLEMENTATION_V2.selectAllProducts();
-	}
+    public List<Product> selectAllProducts() {
+	return SHOP_SERVICE_IMPLEMENTATION_V2.selectAllProducts();
+    }
 }
