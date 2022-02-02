@@ -99,9 +99,9 @@ public class SportsShop  {
         product.setPrice(Validations.validatePrice(SCANNER.next()));
         
         try {
-        	shopKeeper.updateProductPrice(product);
+            shopKeeper.updateProductPrice(product);
         } catch (InvalidProductException exception) {
-			System.out.println("Product Not In Crew");
+            System.out.println("Product Not In Crew");
         }
     }
 
@@ -123,9 +123,9 @@ public class SportsShop  {
         product.setSize(Validations.validateSize(SCANNER.next()));
 
         try {
-        	shopKeeper.removeProduct(product);
+            shopKeeper.removeProduct(product);
     	} catch (InvalidProductException exception) {
-    		System.out.println("Product Not In Crew");
+            System.out.println("Product Not In Crew");
     	}
     }
     
@@ -139,12 +139,11 @@ public class SportsShop  {
     	
         if (products != null) {
 
-        	for (Product product : products) {
-				System.out.println(String.format("%s %s %s %s %s %s %f %s %c %s %s %s", "\n ", product.getBrand(),
-						"Brand :", "\n { Product Name :", product.getName(), "\n   Product Price :", product.getPrice(),
-						"\n   Product Size :", product.getSize(), "\n   Manufacture Date :",
-						product.getManufactureDate().toString(), " }"));
-			}
+            for (Product product : products) {
+                System.out.println(String.format("%s %s %s %s %s %s %f %s %c %s %s %s", "\n ", product.getBrand(),
+                    "Brand :", "\n { Product Name :", product.getName(), "\n   Product Price :", product.getPrice(),
+                    "\n   Product Size :", product.getSize(), "\n   Manufacture Date :", product.getManufactureDate().toString(), " }"));
+            }
         }
     }
 
