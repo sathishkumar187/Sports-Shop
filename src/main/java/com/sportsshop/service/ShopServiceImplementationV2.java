@@ -2,7 +2,9 @@ package com.sportsshop.service;
 
 import java.util.List;
 
-import com.sportsshop.customexceptions.InvalidProductException;
+import com.sportsshop.customexceptions.CustomException;
+import com.sportsshop.customexceptions.CustomException.InvalidProductException;
+import com.sportsshop.dao.SportsShopDao;
 import com.sportsshop.dao.SportsShopDaoImp;
 import com.sportsshop.model.Product;
 
@@ -22,12 +24,12 @@ public class ShopServiceImplementationV2 implements ShopServices {
         return SPORTS_SHOP_DAO.selectAllProducts();
     }
 
-    public Product updateProductPrice(Product product) throws InvalidProductException {
+    public Product updateProductPrice(Product product) throws CustomException {
 	SPORTS_SHOP_DAO.updateProductPrice(product);
 	return selectProduct(product);
     }
 
-    public Product removeProduct(Product product) throws InvalidProductException {
+    public Product removeProduct(Product product) throws CustomException {
 	Product productDetails = selectProduct(product);
 	SPORTS_SHOP_DAO.removeProduct(product);
 	return productDetails;

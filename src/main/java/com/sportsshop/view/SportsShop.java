@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.sportsshop.controller.ShopKeeper;
-import com.sportsshop.customexceptions.InvalidProductException;
+import com.sportsshop.customexceptions.CustomException.InvalidProductException;
 import com.sportsshop.model.Product;
 
 /**

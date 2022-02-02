@@ -3,6 +3,8 @@ package com.sportsshop.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import com.sportsshop.customexceptions.CustomException;
+
 public class DBConnection {
     private static final String JDBC_URL = "jdbc:postgresql://localhost:1818/SportsShop";
     private static final String JDBC_USERNAME = "postgres";
@@ -13,15 +15,14 @@ public class DBConnection {
      * It connects database.
      * @return established connection by connection.
      */
-    Connection getConnection() {
-	Connection connection = null;
+    static final Connection getConnection() {
 
-	try {
-	    Class.forName(JDBC_DRIVER);
-	    connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
-	} catch(Exception e) {
-	    System.out.println("Connection Failed \n    Please Check Connection");
-	}
-	return connection;
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+            return connection;
+        } catch(Exception e) {
+            throw new CustomException.UnableToConnectException("Connection Failed \n    Please Check Connection");
+        }
     }
 }

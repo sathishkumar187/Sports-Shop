@@ -2,7 +2,7 @@ package com.sportsshop.controller;
 
 import java.util.List;
 
-import com.sportsshop.customexceptions.InvalidProductException;
+import com.sportsshop.customexceptions.CustomException.InvalidProductException;
 import com.sportsshop.model.Product;
 import com.sportsshop.service.ShopServiceImplementationV2;
 import com.sportsshop.service.ShopServiceImplementation;

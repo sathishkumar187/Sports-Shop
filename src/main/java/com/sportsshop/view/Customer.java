@@ -1,7 +1,7 @@
 package com.sportsshop.view;
 
 import com.sportsshop.controller.ShopKeeper;
-import com.sportsshop.customexceptions.InvalidProductException;
+import com.sportsshop.customexceptions.CustomException.InvalidProductException;
 import com.sportsshop.model.Product;
 
 /**
