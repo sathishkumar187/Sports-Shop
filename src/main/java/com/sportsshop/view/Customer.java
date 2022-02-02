@@ -11,7 +11,6 @@ public class Customer {
 
     /**
      * To select the product.
-     * @throws InvalidProductException 
      */
     void selectProduct() {
         final Product product = new Product();
