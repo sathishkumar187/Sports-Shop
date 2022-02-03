@@ -2,7 +2,6 @@ package com.sportsshop.service;
 
 import java.util.List;
 
-import com.sportsshop.customexceptions.CustomException;
 import com.sportsshop.customexceptions.CustomException.InvalidProductException;
 import com.sportsshop.dao.SportsShopDao;
 import com.sportsshop.dao.SportsShopDaoImp;
@@ -16,37 +15,31 @@ import com.sportsshop.model.Product;
 public class ShopServiceImplementationV2 implements ShopServices {
     private static final SportsShopDao SPORTS_SHOP_DAO = new SportsShopDaoImp();
 
-    public void addProduct(Product product) {
-	SPORTS_SHOP_DAO.addProduct(product);
+    public boolean addProduct(final Product product) {
+        return SPORTS_SHOP_DAO.addProduct(product);
     }
 
     public List<Product> selectAllProducts() {
         return SPORTS_SHOP_DAO.selectAllProducts();
     }
 
-    public Product updateProductPrice(Product product) throws CustomException {
-	SPORTS_SHOP_DAO.updateProductPrice(product);
-	return selectProduct(product);
+    public boolean updateProductPrice(final Product product) {
+        return SPORTS_SHOP_DAO.updateProductPrice(product);
     }
 
-    public Product removeProduct(Product product) throws CustomException {
-	Product productDetails = selectProduct(product);
-	SPORTS_SHOP_DAO.removeProduct(product);
-	return productDetails;
+    public boolean removeProduct(final Product product) {
+        return SPORTS_SHOP_DAO.removeProduct(product);
     }
 	
-    public Product selectProduct(Product product) throws InvalidProductException {
+    public Product selectProduct(final Product product) {
 		
-	for (Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
+	    for (final Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
 			
-	    if (productDetails.getBrand().equals(product.getBrand())
-		    && productDetails.getName().equals(product.getName())
-		    && productDetails.getSize() == product.getSize()) {
-	        return productDetails;
-	    } else {
-		throw new InvalidProductException("Product Not In Crew");
+	        if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
+		            && productDetails.getSize() == product.getSize()) {
+	            return productDetails;
+	        } 
 	    }
-	}
-	return null;
+        throw new InvalidProductException("Product Not In Crew");      
     }
 }

@@ -19,7 +19,7 @@ public class DBConnection {
 
         try {
             Class.forName(JDBC_DRIVER);
-            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+            final Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
             return connection;
         } catch(Exception e) {
             throw new CustomException.UnableToConnectException("Connection Failed \n    Please Check Connection");

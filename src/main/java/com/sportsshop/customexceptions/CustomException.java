@@ -2,27 +2,27 @@ package com.sportsshop.customexceptions;
 
 public class CustomException extends RuntimeException {
 	
-    public CustomException(String message) {
+    public CustomException(final String message) {
         super(message);
     }
     
     public static class InvalidProductException extends CustomException {
     	
-        public InvalidProductException(String message) {
+        public InvalidProductException(final String message) {
             super(message);
         }
     }
     
     public static class UnableToConnectException extends CustomException {
     	
-        public UnableToConnectException(String message) {
+        public UnableToConnectException(final String message) {
             super(message);
         }
     }
     
     public static class UnableToAccessException extends CustomException {
     	
-        public UnableToAccessException(String message) {
+        public UnableToAccessException(final String message) {
             super(message);
         }
     }

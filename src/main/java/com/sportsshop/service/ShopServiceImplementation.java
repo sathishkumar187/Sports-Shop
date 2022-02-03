@@ -17,50 +17,49 @@ public class ShopServiceImplementation implements ShopServices {
     /**
      * It adds the product.
      */
-    public void addProduct(Product product) {
+    public boolean addProduct(final Product product) {
 	final List<Product> sportsProducts = new ArrayList<Product>();
 		
-	if (!SPORTS_KITS.containsKey(product.getBrand())) {
+	    if (!SPORTS_KITS.containsKey(product.getBrand())) {
        	    sportsProducts.add(product);
-  	    SPORTS_KITS.put(product.getBrand(), sportsProducts);
-	} else {
-	    SPORTS_KITS.get(product.getBrand()).add(product);
-	}
+  	        SPORTS_KITS.put(product.getBrand(), sportsProducts);
+	    } else {
+	        SPORTS_KITS.get(product.getBrand()).add(product);
+	    }
+        return true;
     }    
 
     /**
      * It selects the product.
      * @throws NullProductException 
      */
-    public Product selectProduct(Product product) throws InvalidProductException {
+    public Product selectProduct(final Product product) {
 		
-	if (SPORTS_KITS.containsKey(product.getBrand())) {
+	    if (SPORTS_KITS.containsKey(product.getBrand())) {
 
-            for (Product productDetails : SPORTS_KITS.get(product.getBrand())) {
+            for (final Product productDetails : SPORTS_KITS.get(product.getBrand())) {
 
                 if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
-			&& productDetails.getSize() == product.getSize()) {
-		    return productDetails;
-	        }
+			            && productDetails.getSize() == product.getSize()) {
+		            return productDetails;
+	            }
             }
-	} else {
-	    throw new InvalidProductException("Product Not In Crew");
-	}
-	return null;
+	    } 
+        throw new InvalidProductException("Product Not In Crew");
     }
 
     /**
      * To update the product price.
      * @throws NullProductException 
      */
-    public Product updateProductPrice(Product product) throws InvalidProductException {
+    public boolean updateProductPrice(final Product product) {
     final Product productDetails = selectProduct(product);
 		
         if (productDetails != null) {
-	    productDetails.setPrice(product.getPrice());
-	    return productDetails;
+	        productDetails.setPrice(product.getPrice());
+            return true;
         } else {
-	    throw new InvalidProductException("Product Not In Crew");
+	        throw new InvalidProductException("Product Not In Crew");
         }
     }    
 
@@ -68,15 +67,15 @@ public class ShopServiceImplementation implements ShopServices {
      * To remove the product. 
      * @throws InvalidProductException 
      */
-    public Product removeProduct(Product product) throws InvalidProductException {
-	final Product productDetails = selectProduct(product);
+    public boolean removeProduct(final Product product) {
+	    final Product productDetails = selectProduct(product);
 		
-	if (productDetails == null) {
-	    SPORTS_KITS.get(product.getBrand()).remove(productDetails);
-	    return productDetails;
-	} else {
-	    throw new InvalidProductException("Product Not In Crew");
-	}
+	    if (productDetails == null) {
+	        SPORTS_KITS.get(product.getBrand()).remove(productDetails);
+            return true;
+	    } else {
+	        throw new InvalidProductException("Product Not In Crew");
+	    }
     }    
 	
     /**
@@ -85,9 +84,9 @@ public class ShopServiceImplementation implements ShopServices {
     public List<Product> selectAllProducts() {
         List<Product> allProducts = new ArrayList<>();
 		
-        for (List<Product> products : SPORTS_KITS.values()) {
-	    allProducts.addAll(products);
-	}
-	return allProducts;
+        for (final List<Product> products : SPORTS_KITS.values()) {
+	        allProducts.addAll(products);
+	    }
+	    return allProducts;
     }
 }

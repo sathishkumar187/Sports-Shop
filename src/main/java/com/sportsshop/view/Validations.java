@@ -11,9 +11,9 @@ public class Validations {
     /**
      * It validates the selected operation.
      * @param operation
-     * @return validated operation by int.
+     * @return validated operation by integer.
      */
-    static int validateOperation(String operation) {
+    static int validateOperation(final String operation) {
 		
         if (operation.matches("[1-6]")) {
             return Integer.parseInt(operation);
@@ -28,7 +28,7 @@ public class Validations {
      * @param name
      * @return validated name by String.
      */
-    static String validateName(String name) {
+    static String validateName(final String name) {
 		
         if (name.matches("(?i)[bat|ball|stump|gloves|helmet].*(?-i)")) {
             return name;
@@ -43,7 +43,7 @@ public class Validations {
      * @param brandName
      * @return validated brand name by String.
      */
-    static String validateBrand(String brandName) {
+    static String validateBrand(final String brandName) {
 		
         if (brandName.matches("(?i)[ss|sg|mrf|nike|rbk].*(?-i)")) {
             return brandName;
@@ -58,7 +58,7 @@ public class Validations {
      * @param price
      * @return validated price by float.
      */
-    static double validatePrice(String price) {
+    static double validatePrice(final String price) {
 		
         if (price.matches("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")) {
             return Double.parseDouble(price);
@@ -73,7 +73,7 @@ public class Validations {
      * @param size
      * @return validated size by char.
      */
-    static char validateSize(String size) {
+    static char validateSize(final String size) {
 		
         if (size.matches("(?i)[s|m|l].*(?-i)")) {
             return size.charAt(0);
@@ -88,7 +88,7 @@ public class Validations {
      * @param inputDate
      * @return validated manufacture date by Date
      */
-    static Date validateDate(String inputDate) {
+    static Date validateDate(final String inputDate) {
 		
         try {
             final LocalDate date = LocalDate.parse(inputDate);

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sportsshop.customexceptions.CustomException;
+import com.sportsshop.customexceptions.CustomException.UnableToAccessException;
 import com.sportsshop.model.Product;
 
 public class SportsShopDaoImp implements SportsShopDao {
@@ -20,7 +20,7 @@ public class SportsShopDaoImp implements SportsShopDao {
     /**
      * To add the product in database.
      */
-    public void addProduct(Product product) {
+    public boolean addProduct(final Product product) {
 
         try (final Connection connection = DBConnection.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT);) {
             preparedStatement.setString(1, product.getBrand());
@@ -30,16 +30,16 @@ public class SportsShopDaoImp implements SportsShopDao {
             preparedStatement.setDate(5, product.getManufactureDate());
             preparedStatement.setBoolean(6, false);
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new CustomException.UnableToAccessException("Couldn't Add The Product... \n    Please Try Again");
+            return preparedStatement.execute();
+        } catch (SQLException exception) {
+            throw new UnableToAccessException("Couldn't Add The Product... \n    Please Try Again");
         }
     }
 
     /**
      * To update the product price.
      */
-    public void updateProductPrice(Product product) {
+    public boolean updateProductPrice(final Product product) {
 
         try (final Connection connection = DBConnection.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT);) {
             preparedStatement.setDouble(1, product.getPrice());
@@ -48,16 +48,16 @@ public class SportsShopDaoImp implements SportsShopDao {
             preparedStatement.setString(4, String.valueOf(product.getSize()));
             preparedStatement.setBoolean(5, false);
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new CustomException.UnableToAccessException("Couldn't Update The Product... \n    Please Try Again");
+            return preparedStatement.execute();
+        } catch (SQLException exception) {
+            throw new UnableToAccessException("Couldn't Update The Product... \n    Please Try Again");
         }
     }
 
     /**
      * To remove the product from database.
      */
-    public void removeProduct(Product product) {
+    public boolean removeProduct(final Product product) {
 
         try (final Connection connection = DBConnection.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PRODUCT);) {
             preparedStatement.setBoolean(1, true);
@@ -65,9 +65,9 @@ public class SportsShopDaoImp implements SportsShopDao {
             preparedStatement.setString(3, product.getName());
             preparedStatement.setString(4, String.valueOf(product.getSize()));
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new CustomException.UnableToAccessException("Couldn't Remove The Product... \n    Please Try Again");
+            return preparedStatement.execute();
+        } catch (SQLException exception) {
+            throw new UnableToAccessException("Couldn't Remove The Product... \n    Please Try Again");
         }
     }
 
@@ -77,21 +77,22 @@ public class SportsShopDaoImp implements SportsShopDao {
      * @return all products by list.
      */
     public List<Product> selectAllProducts() {
-        final List<Product> products = new ArrayList<>();
 
         try (final Connection connection = DBConnection.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT);) {
+            final List<Product> products = new ArrayList<Product>();
+            
             preparedStatement.setBoolean(1, false);
             final ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                final Product product = new Product(resultSet.getString("name"), resultSet.getString("brand"), resultSet.getDouble("price"), resultSet.getString("size").charAt(0), 
-                                           resultSet.getDate("manufacturedate"));
-                resultSet.close();
+                final Product product = new Product(resultSet.getString("name"), resultSet.getString("brand"), 
+                		resultSet.getDouble("price"), resultSet.getString("size").charAt(0), resultSet.getDate("manufacturedate"));
                 products.add(product);
             }
-        } catch (SQLException e) {
-            throw new CustomException.UnableToAccessException("Couldn't Select The Products... \n    Please Try Again");
+            resultSet.close();
+            return products;
+        } catch (SQLException exception) {
+            throw new UnableToAccessException("Couldn't Select The Products... \n    Please Try Again");
         }
-    return products;
     }
 }

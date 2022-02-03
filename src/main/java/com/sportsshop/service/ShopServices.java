@@ -2,7 +2,6 @@ package com.sportsshop.service;
 
 import java.util.List;
 
-import com.sportsshop.customexceptions.CustomException.InvalidProductException;
 import com.sportsshop.model.Product;
 
 /**
@@ -10,14 +9,14 @@ import com.sportsshop.model.Product;
  */
 public interface ShopServices {
 	
-    void addProduct(Product product);
+    boolean addProduct(Product product);
     
     List<Product> selectAllProducts();
 		
-    Product selectProduct(Product product) throws InvalidProductException;
+    Product selectProduct(Product product);
 		
-    Product updateProductPrice(Product product) throws InvalidProductException;
+    boolean updateProductPrice(Product product);
 		
-    Product removeProduct(Product product) throws InvalidProductException;
+    boolean removeProduct(Product product);
 }
 

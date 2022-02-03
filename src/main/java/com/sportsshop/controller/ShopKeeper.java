@@ -2,10 +2,9 @@ package com.sportsshop.controller;
 
 import java.util.List;
 
-import com.sportsshop.customexceptions.CustomException.InvalidProductException;
 import com.sportsshop.model.Product;
-import com.sportsshop.service.ShopServiceImplementationV2;
 import com.sportsshop.service.ShopServiceImplementation;
+import com.sportsshop.service.ShopServiceImplementationV2;
 import com.sportsshop.service.ShopServices;
 import com.sportsshop.view.SportsShop;
 
@@ -18,27 +17,28 @@ public class ShopKeeper  {
     private static final ShopServices SHOP_SERVICE_IMPLEMENTATION = new ShopServiceImplementation();
     private static final ShopServices SHOP_SERVICE_IMPLEMENTATION_V2 = new ShopServiceImplementationV2();
     
-    public void addProduct(Product product) {
-    	SHOP_SERVICE_IMPLEMENTATION.addProduct(product);
-    	SHOP_SERVICE_IMPLEMENTATION_V2.addProduct(product);
+    public boolean addProduct(final Product product) {
+    	//SHOP_SERVICE_IMPLEMENTATION.addProduct(product);
+    	return SHOP_SERVICE_IMPLEMENTATION_V2.addProduct(product);
     }
 
-    public void selectProduct(Product product) throws InvalidProductException {
-	SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.selectProduct(product));
-	SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.selectProduct(product));
+    public void selectProduct(final Product product) {
+        //SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.selectProduct(product));
+        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.selectProduct(product));
     }
 
-    public void updateProductPrice(Product product) throws InvalidProductException {
-        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.updateProductPrice(product));
-        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.updateProductPrice(product));
+    public boolean updateProductPrice(final Product product) {
+        //SHOP_SERVICE_IMPLEMENTATION.updateProductPrice(product));
+        return SHOP_SERVICE_IMPLEMENTATION_V2.updateProductPrice(product);
     }
 
-    public void removeProduct(Product product) throws InvalidProductException {
-        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.removeProduct(product));
-        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.removeProduct(product));
+    public boolean removeProduct(final Product product) {
+        //SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.removeProduct(product));
+        return SHOP_SERVICE_IMPLEMENTATION_V2.removeProduct(product);
     }
 
     public List<Product> selectAllProducts() {
-	return SHOP_SERVICE_IMPLEMENTATION_V2.selectAllProducts();
+    	//SHOP_SERVICE_IMPLEMENTATION.selectAllProducts();
+        return SHOP_SERVICE_IMPLEMENTATION_V2.selectAllProducts();
     }
 }

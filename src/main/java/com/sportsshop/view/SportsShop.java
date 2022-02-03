@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.sportsshop.controller.ShopKeeper;
 import com.sportsshop.customexceptions.CustomException.InvalidProductException;
+import com.sportsshop.customexceptions.CustomException.UnableToAccessException;
 import com.sportsshop.model.Product;
 
 /**
@@ -64,7 +65,11 @@ public class SportsShop  {
         System.out.println("Mention Manufacture Date(YYYY-MM-DD)");
         product.setManufactureDate(Validations.validateDate(SCANNER.next()));
 
-        shopKeeper.addProduct(product);
+        boolean success = shopKeeper.addProduct(product);
+        
+        if (success) {
+            System.out.println("Product Added Successfully");
+        }
     }
 
     /**
@@ -101,6 +106,8 @@ public class SportsShop  {
             shopKeeper.updateProductPrice(product);
         } catch (InvalidProductException exception) {
             System.out.println(exception);
+        } catch (UnableToAccessException exception) {
+            System.out.println(exception);
         }
     }
 
@@ -122,9 +129,11 @@ public class SportsShop  {
 
         try {
             shopKeeper.removeProduct(product);
-    	} catch (InvalidProductException exception) {
+        } catch (InvalidProductException exception) {
             System.out.println(exception);
-    	}
+        } catch (UnableToAccessException exception) {
+            System.out.println(exception);
+        }
     }
     
     /**
@@ -133,7 +142,7 @@ public class SportsShop  {
      */
     public static final void showAllProducts() {
     	final ShopKeeper shopKeeper = new ShopKeeper();
-    	List<Product> products = shopKeeper.selectAllProducts();
+    	final List<Product> products = shopKeeper.selectAllProducts();
     	
         if (products != null) {
 
@@ -149,7 +158,7 @@ public class SportsShop  {
      * To show the Selected Product.
      * @param product
      */
-    public static final void showProduct(Product product) {
+    public static final void showProduct(final Product product) {
 
         if (product != null) {
             System.out.println(String.format("%s %s %s %s %s %f %s %c %s %s","\n Product Details : \n  Product Name :",

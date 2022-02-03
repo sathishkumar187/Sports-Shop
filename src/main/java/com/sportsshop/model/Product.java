@@ -13,23 +13,23 @@ public class Product {
     private Date   manufactureDate;
 
     public Product() {
-	super();
+	    super();
     }
 
-    public Product(String name, String brand, double price, char size, Date manufactureDate) {
-	super();
-	this.name = name;
-	this.brand = brand;
-	this.price = price;
-	this.size = size;
-	this.manufactureDate = manufactureDate;
+    public Product(final String name, final String brand, final double price, final char size, final Date manufactureDate) {
+	    super();
+	    this.name = name;
+	    this.brand = brand;
+	    this.price = price;
+	    this.size = size;
+	    this.manufactureDate = manufactureDate;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
@@ -37,7 +37,7 @@ public class Product {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(final String brand) {
         this.brand = brand;
     }
 
@@ -45,7 +45,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(final double price) {
         this.price = price;
     }
 
@@ -53,7 +53,7 @@ public class Product {
         return size;
     }
 
-    public void setSize(char size) {
+    public void setSize(final char size) {
         this.size = size;
     }
 
@@ -61,7 +61,7 @@ public class Product {
         return manufactureDate;
     }
 
-    public void setManufactureDate(Date manufactureDate) {
+    public void setManufactureDate(final Date manufactureDate) {
         this.manufactureDate = manufactureDate;
     }
 }

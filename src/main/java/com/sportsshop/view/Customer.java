@@ -2,6 +2,7 @@ package com.sportsshop.view;
 
 import com.sportsshop.controller.ShopKeeper;
 import com.sportsshop.customexceptions.CustomException.InvalidProductException;
+import com.sportsshop.customexceptions.CustomException.UnableToAccessException;
 import com.sportsshop.model.Product;
 
 /**
@@ -28,6 +29,8 @@ public class Customer {
         try {
             shopKeeper.selectProduct(product);
         } catch (InvalidProductException exception) {
+            System.out.println(exception);
+        } catch (UnableToAccessException exception) {
             System.out.println(exception);
         }
     }

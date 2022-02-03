@@ -11,11 +11,11 @@ import com.sportsshop.model.Product;
  */
 public interface SportsShopDao {
 
-    void addProduct(Product product);
+    boolean addProduct(Product product);
 	
-    void updateProductPrice(Product product);
+    boolean updateProductPrice(Product product);
 	
-    void removeProduct(Product product);
+    boolean removeProduct(Product product);
 	
     List<Product> selectAllProducts();
 }
