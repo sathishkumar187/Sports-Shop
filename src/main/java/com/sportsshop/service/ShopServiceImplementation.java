@@ -31,7 +31,6 @@ public class ShopServiceImplementation implements ShopServices {
 
     /**
      * It selects the product.
-     * @throws NullProductException 
      */
     public Product selectProduct(final Product product) {
 		
@@ -50,7 +49,6 @@ public class ShopServiceImplementation implements ShopServices {
 
     /**
      * To update the product price.
-     * @throws NullProductException 
      */
     public boolean updateProductPrice(final Product product) {
     final Product productDetails = selectProduct(product);
@@ -64,8 +62,7 @@ public class ShopServiceImplementation implements ShopServices {
     }    
 
     /**
-     * To remove the product. 
-     * @throws InvalidProductException 
+     * To remove the product.  
      */
     public boolean removeProduct(final Product product) {
 	    final Product productDetails = selectProduct(product);

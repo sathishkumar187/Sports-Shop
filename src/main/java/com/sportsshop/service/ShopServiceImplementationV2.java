@@ -16,19 +16,39 @@ public class ShopServiceImplementationV2 implements ShopServices {
     private static final SportsShopDao SPORTS_SHOP_DAO = new SportsShopDaoImp();
 
     public boolean addProduct(final Product product) {
-        return SPORTS_SHOP_DAO.addProduct(product);
+        final boolean isAdded = SPORTS_SHOP_DAO.addProduct(product);
+        
+        if (isAdded) {
+        	return true;
+        }
+        throw new InvalidProductException("Product Not In Crew");
     }
 
     public List<Product> selectAllProducts() {
-        return SPORTS_SHOP_DAO.selectAllProducts();
+    	final List<Product> products = SPORTS_SHOP_DAO.selectAllProducts();
+    	
+        if (!products.isEmpty()) {
+        	return products;
+        }
+        throw new InvalidProductException("Product Not In Crew");
     }
 
     public boolean updateProductPrice(final Product product) {
-        return SPORTS_SHOP_DAO.updateProductPrice(product);
+    	final boolean isUpdated = SPORTS_SHOP_DAO.updateProductPrice(product);
+    	
+    	if (isUpdated) {
+    		return true;
+    	}
+    	throw new InvalidProductException("Product Not In Crew");
     }
 
     public boolean removeProduct(final Product product) {
-        return SPORTS_SHOP_DAO.removeProduct(product);
+    	final boolean isRemoved = SPORTS_SHOP_DAO.removeProduct(product);
+    	
+    	if (isRemoved) {
+            return true;
+    	}
+        throw new InvalidProductException("Product Not In Crew");
     }
 	
     public Product selectProduct(final Product product) {

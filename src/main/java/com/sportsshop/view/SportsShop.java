@@ -65,20 +65,22 @@ public class SportsShop  {
         System.out.println("Mention Manufacture Date(YYYY-MM-DD)");
         product.setManufactureDate(Validations.validateDate(SCANNER.next()));
 
-        boolean success = shopKeeper.addProduct(product);
-        
-        if (success) {
+        try {
+        	shopKeeper.addProduct(product);
             System.out.println("Product Added Successfully");
+        } catch (InvalidProductException exception) {
+            System.out.println(exception);
+        } catch (UnableToAccessException exception) {
+            System.out.println(exception);
         }
     }
 
     /**
      * To call the customer for select any product. 
-     * @throws InvalidProductException 
      */
     private static final void selectAnyProduct() {
         System.out.println("Select Any Product");
-        Customer customer = new Customer();
+        final Customer customer = new Customer();
 
         customer.selectProduct();
     }
@@ -138,11 +140,18 @@ public class SportsShop  {
     
     /**
      * To show all the available products.
-     * @param sportsKits
      */
-    public static final void showAllProducts() {
+    private static final void showAllProducts() {
     	final ShopKeeper shopKeeper = new ShopKeeper();
-    	final List<Product> products = shopKeeper.selectAllProducts();
+    	List<Product> products = null;
+    	
+    	try {
+    		products = shopKeeper.selectAllProducts();
+    	} catch (InvalidProductException exception) {
+             System.out.println(exception);
+        } catch (UnableToAccessException exception) {
+             System.out.println(exception);
+        }
     	
         if (products != null) {
 

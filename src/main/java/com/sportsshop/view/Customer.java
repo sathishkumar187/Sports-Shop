@@ -27,7 +27,7 @@ public class Customer {
         product.setSize(Validations.validateSize(SportsShop.SCANNER.next()));
         
         try {
-            shopKeeper.selectProduct(product);
+            SportsShop.showProduct(shopKeeper.selectProduct(product));
         } catch (InvalidProductException exception) {
             System.out.println(exception);
         } catch (UnableToAccessException exception) {

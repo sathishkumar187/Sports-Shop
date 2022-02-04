@@ -22,9 +22,9 @@ public class ShopKeeper  {
     	return SHOP_SERVICE_IMPLEMENTATION_V2.addProduct(product);
     }
 
-    public void selectProduct(final Product product) {
+    public Product selectProduct(final Product product) {
         //SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.selectProduct(product));
-        SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION_V2.selectProduct(product));
+        return SHOP_SERVICE_IMPLEMENTATION_V2.selectProduct(product);
     }
 
     public boolean updateProductPrice(final Product product) {
