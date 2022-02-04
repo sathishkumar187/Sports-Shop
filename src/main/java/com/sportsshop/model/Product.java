@@ -13,16 +13,14 @@ public class Product {
     private Date   manufactureDate;
 
     public Product() {
-	    super();
     }
 
     public Product(final String name, final String brand, final double price, final char size, final Date manufactureDate) {
-	    super();
-	    this.name = name;
-	    this.brand = brand;
-	    this.price = price;
-	    this.size = size;
-	    this.manufactureDate = manufactureDate;
+	this.name = name;
+	this.brand = brand;
+	this.price = price;
+	this.size = size;
+	this.manufactureDate = manufactureDate;
     }
 
     public String getName() {
