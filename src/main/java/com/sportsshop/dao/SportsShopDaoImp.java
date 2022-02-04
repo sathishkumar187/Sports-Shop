@@ -22,7 +22,8 @@ public class SportsShopDaoImp implements SportsShopDao {
      */
     public boolean addProduct(final Product product) {
 
-        try (final Connection connection = DBConnection.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT);) {
+        try (final Connection connection = DBConnection.getConnection(); 
+                final PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT);) {
             preparedStatement.setString(1, product.getBrand());
             preparedStatement.setString(2, product.getName());
             preparedStatement.setDouble(3, product.getPrice());
@@ -80,7 +81,8 @@ public class SportsShopDaoImp implements SportsShopDao {
      */
     public List<Product> selectAllProducts() {
     	ResultSet resultSet = null;
-        try (final Connection connection = DBConnection.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT);) {
+        
+	try (final Connection connection = DBConnection.getConnection(); final PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PRODUCT);) {
             final List<Product> products = new ArrayList<Product>();
             
             preparedStatement.setBoolean(1, true);
@@ -88,7 +90,7 @@ public class SportsShopDaoImp implements SportsShopDao {
 
             while (resultSet.next()) {
                 final Product product = new Product(resultSet.getString("name"), resultSet.getString("brand"), 
-                		resultSet.getDouble("price"), resultSet.getString("size").charAt(0), resultSet.getDate("manufacturedate"));
+                	resultSet.getDouble("price"), resultSet.getString("size").charAt(0), resultSet.getDate("manufacturedate"));
                 products.add(product);
             }
             return products;
@@ -97,10 +99,10 @@ public class SportsShopDaoImp implements SportsShopDao {
         } finally {
         	
             try {
-				resultSet.close();
-			} catch (SQLException exception) {
-				throw new UnableToAccessException("Couldn't Select The Products... \n    Please Try Again");
-			}
+		resultSet.close();
+	    } catch (SQLException exception) {
+		throw new UnableToAccessException("Couldn't Select The Products... \n    Please Try Again");
+	    }
         }
     }
 }
