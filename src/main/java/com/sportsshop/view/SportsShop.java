@@ -66,7 +66,7 @@ public class SportsShop  {
         product.setManufactureDate(Validations.validateDate(SCANNER.next()));
 
         try {
-        	shopKeeper.addProduct(product);
+            shopKeeper.addProduct(product);
             System.out.println("Product Added Successfully");
         } catch (InvalidProductException exception) {
             System.out.println(exception);
