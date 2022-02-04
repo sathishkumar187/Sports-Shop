@@ -19,7 +19,7 @@ public class ShopServiceImplementationV2 implements ShopServices {
         final boolean isAdded = SPORTS_SHOP_DAO.addProduct(product);
         
         if (isAdded) {
-        	return true;
+            return isAdded;
         }
         throw new InvalidProductException("Product Not In Crew");
     }
@@ -28,7 +28,7 @@ public class ShopServiceImplementationV2 implements ShopServices {
     	final List<Product> products = SPORTS_SHOP_DAO.selectAllProducts();
     	
         if (!products.isEmpty()) {
-        	return products;
+            return products;
         }
         throw new InvalidProductException("Product Not In Crew");
     }
@@ -37,7 +37,7 @@ public class ShopServiceImplementationV2 implements ShopServices {
     	final boolean isUpdated = SPORTS_SHOP_DAO.updateProductPrice(product);
     	
     	if (isUpdated) {
-    		return true;
+    	    return isUpdated;
     	}
     	throw new InvalidProductException("Product Not In Crew");
     }
@@ -46,20 +46,20 @@ public class ShopServiceImplementationV2 implements ShopServices {
     	final boolean isRemoved = SPORTS_SHOP_DAO.removeProduct(product);
     	
     	if (isRemoved) {
-            return true;
+            return isRemoved;
     	}
         throw new InvalidProductException("Product Not In Crew");
     }
 	
     public Product selectProduct(final Product product) {
 		
-	    for (final Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
+	for (final Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
 			
-	        if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
-		            && productDetails.getSize() == product.getSize()) {
-	            return productDetails;
-	        } 
-	    }
+	    if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
+		    && productDetails.getSize() == product.getSize()) {
+	        return productDetails;
+	    } 
+	}
         throw new InvalidProductException("Product Not In Crew");      
     }
 }
