@@ -16,12 +16,7 @@ public class ShopServiceImplementationV2 implements ShopServices {
     private static final SportsShopDao SPORTS_SHOP_DAO = new SportsShopDaoImp();
 
     public boolean addProduct(final Product product) {
-        final boolean isAdded = SPORTS_SHOP_DAO.addProduct(product);
-        
-        if (isAdded) {
-            return isAdded;
-        }
-        throw new InvalidProductException("Product Not In Crew");
+        return SPORTS_SHOP_DAO.addProduct(product);
     }
 
     public List<Product> selectAllProducts() {
