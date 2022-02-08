@@ -31,10 +31,11 @@ public class SportsShopDaoImp implements SportsShopDao {
             preparedStatement.setDate(5, product.getManufactureDate());
             preparedStatement.setBoolean(6, true);
 
-            return preparedStatement.executeUpdate() > 0;
+            preparedStatement.executeUpdate();
         } catch (SQLException exception) {
             throw new UnableToAccessException("Couldn't Add The Product... \n    Please Try Again");
         }
+	return true;
     }
 
     /**
