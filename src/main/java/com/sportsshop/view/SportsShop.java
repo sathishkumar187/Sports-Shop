@@ -25,19 +25,20 @@ public class SportsShop  {
     
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
-		final Properties properties = new Properties();
+	final Properties properties = new Properties();
 		
-		properties.load(new FileInputStream("log4j.properties"));
-		PropertyConfigurator.configure(properties);
-		SportsShop.menu();
+	properties.load(new FileInputStream("log4j.properties"));
+	PropertyConfigurator.configure(properties);
+	SportsShop.menu();
     }
+	
     /**
      * Main menu.
      */
     static void menu() {
     	
     	do {
-        	LOGGER.info("\n\n    <^_^> Sports Shop Application <^_^>\n\n Operations \n  1.Add Product \n  2.Select Product \n  3.Update Product Price \n  4.Remove Product \n  5.Select All Products \n  6.Exit \n\n Select Any Operation");
+            LOGGER.info("\n\n    <^_^> Sports Shop Application <^_^>\n\n Operations \n  1.Add Product \n  2.Select Product \n  3.Update Product Price \n  4.Remove Product \n  5.Select All Products \n  6.Exit \n\n Select Any Operation");
             final int operation = GetDetailsFromUser.getOperation();
 
             switch (operation) {
@@ -77,12 +78,12 @@ public class SportsShop  {
         product.setManufactureDate(GetDetailsFromUser.getManufacturingDate());
 
         try {
-        	shopKeeper.addProduct(product);
-        	LOGGER.info("\n Product Added Successfully");
+            shopKeeper.addProduct(product);
+            LOGGER.info("\n Product Added Successfully");
         } catch (InvalidProductException exception) {
-        	LOGGER.warn(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-        	LOGGER.error(exception);
+            LOGGER.error(exception);
         }
     }
 
@@ -108,13 +109,13 @@ public class SportsShop  {
         product.setSize(GetDetailsFromUser.getProductSize());
         
         try {
-        	shopKeeper.selectProduct(product);
+            shopKeeper.selectProduct(product);
         } catch (InvalidProductException exception) {
-        	LOGGER.warn(exception);
-        	updateProductPrice();
-        	menu();
+            LOGGER.warn(exception);
+            updateProductPrice();
+            menu();
         } catch (UnableToAccessException exception) {
-        	LOGGER.error(exception);
+            LOGGER.error(exception);
         }
         product.setPrice(GetDetailsFromUser.getProductPrice());
         
@@ -122,9 +123,9 @@ public class SportsShop  {
             shopKeeper.updateProductPrice(product);
             LOGGER.info("\n Product Updated Successfully");
         } catch (InvalidProductException exception) {
-        	LOGGER.warn(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-        	LOGGER.error(exception);
+            LOGGER.error(exception);
         }
     }
 
@@ -143,9 +144,9 @@ public class SportsShop  {
             shopKeeper.removeProduct(product);
             LOGGER.info("\n Product Removed Successfully");
         } catch (InvalidProductException exception) {
-        	LOGGER.warn(exception);
+            LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-        	LOGGER.error(exception);
+            LOGGER.error(exception);
         }
     }
     
@@ -157,11 +158,11 @@ public class SportsShop  {
     	List<Product> products = null;
     	
     	try {
-    		products = shopKeeper.selectAllProducts();
+    	    products = shopKeeper.selectAllProducts();
     	} catch (InvalidProductException exception) {
-    		LOGGER.warn(exception);
+    	    LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-        	LOGGER.error(exception);
+            LOGGER.error(exception);
         }
     	
         if (products != null) {
@@ -181,7 +182,7 @@ public class SportsShop  {
     public static void showProduct(final Product product) {
 
         if (product != null) {
-        	LOGGER.info(String.format("%s %s %s %s %s %f %s %c %s %s","\n\n Product Details : \n  Product Name :",
+            LOGGER.info(String.format("%s %s %s %s %s %f %s %c %s %s","\n\n Product Details : \n  Product Name :",
                 product.getName(), "\n  Product Brand :", product.getBrand(), "\n  Product Price :",
                 product.getPrice(), "\n  Product Size :", product.getSize(), "\n  Manufacture Date :",
                 product.getManufactureDate()).toString());
