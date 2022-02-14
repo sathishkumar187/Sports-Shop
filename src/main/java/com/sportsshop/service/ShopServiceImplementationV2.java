@@ -24,7 +24,7 @@ public class ShopServiceImplementationV2 implements ShopServices {
     	final List<Product> products = SPORTS_SHOP_DAO.selectAllProducts();
     	
         if (!products.isEmpty()) {
-        	return products;
+            return products;
         }
         throw new InvalidProductException("No Such Products In Crew");
     }
@@ -32,7 +32,7 @@ public class ShopServiceImplementationV2 implements ShopServices {
     public void updateProductPrice(final Product product) {
     	
     	if (!SPORTS_SHOP_DAO.updateProductPrice(product)) {
-        	throw new InvalidProductException("Product Not In Crew");
+            throw new InvalidProductException("Product Not In Crew");
     	}
     }
 
@@ -45,13 +45,13 @@ public class ShopServiceImplementationV2 implements ShopServices {
 	
     public Product selectProduct(final Product product) {
 		
-	    for (final Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
+	for (final Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
 	    	
-	        if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
-		            && String.valueOf(productDetails.getSize()).charAt(0) == product.getSize()) {
-	            return productDetails;
-	        } 
-	    }
+	    if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
+		        && String.valueOf(productDetails.getSize()).charAt(0) == product.getSize()) {
+	        return productDetails;
+	    } 
+	}
         throw new InvalidProductException("Product Not In Crew");      
     }
 }
