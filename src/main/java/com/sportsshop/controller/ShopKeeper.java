@@ -14,12 +14,13 @@ import com.sportsshop.view.SportsShop;
  * And also passes the response to view. 
  */
 public class ShopKeeper  {
+	
     private static final ShopServices SHOP_SERVICE_IMPLEMENTATION = new ShopServiceImplementation();
     private static final ShopServices SHOP_SERVICE_IMPLEMENTATION_V2 = new ShopServiceImplementationV2();
     
-    public boolean addProduct(final Product product) {
+    public void addProduct(final Product product) {
     	//SHOP_SERVICE_IMPLEMENTATION.addProduct(product);
-    	return SHOP_SERVICE_IMPLEMENTATION_V2.addProduct(product);
+    	SHOP_SERVICE_IMPLEMENTATION_V2.addProduct(product);
     }
 
     public Product selectProduct(final Product product) {
@@ -27,14 +28,14 @@ public class ShopKeeper  {
         return SHOP_SERVICE_IMPLEMENTATION_V2.selectProduct(product);
     }
 
-    public boolean updateProductPrice(final Product product) {
+    public void updateProductPrice(final Product product) {
         //SHOP_SERVICE_IMPLEMENTATION.updateProductPrice(product));
-        return SHOP_SERVICE_IMPLEMENTATION_V2.updateProductPrice(product);
+        SHOP_SERVICE_IMPLEMENTATION_V2.updateProductPrice(product);
     }
 
-    public boolean removeProduct(final Product product) {
+    public void removeProduct(final Product product) {
         //SportsShop.showProduct(SHOP_SERVICE_IMPLEMENTATION.removeProduct(product));
-        return SHOP_SERVICE_IMPLEMENTATION_V2.removeProduct(product);
+        SHOP_SERVICE_IMPLEMENTATION_V2.removeProduct(product);
     }
 
     public List<Product> selectAllProducts() {

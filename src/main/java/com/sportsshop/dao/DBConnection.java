@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import com.sportsshop.customexceptions.CustomException;
 
 public class DBConnection {
+	
     private static final String JDBC_URL = "jdbc:postgresql://localhost:1818/SportsShop";
     private static final String JDBC_USERNAME = "postgres";
     private static final String JDBC_PASSWORD = "Ssk18187";

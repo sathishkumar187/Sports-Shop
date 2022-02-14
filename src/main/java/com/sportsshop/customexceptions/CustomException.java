@@ -1,5 +1,10 @@
 package com.sportsshop.customexceptions;
 
+/**
+ * Custom Exceptions.
+ * @author SathishKumarS
+ *
+ */
 public class CustomException extends RuntimeException {
 	
     public CustomException(final String message) {
@@ -23,6 +28,13 @@ public class CustomException extends RuntimeException {
     public static class UnableToAccessException extends CustomException {
     	
         public UnableToAccessException(final String message) {
+            super(message);
+        }
+    }
+    
+    public static class InvalidDateException extends CustomException {
+    	
+        public InvalidDateException(final String message) {
             super(message);
         }
     }

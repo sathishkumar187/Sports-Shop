@@ -9,14 +9,14 @@ import com.sportsshop.model.Product;
  */
 public interface ShopServices {
 	
-    boolean addProduct(Product product);
+    void addProduct(Product product);
     
     List<Product> selectAllProducts();
 		
     Product selectProduct(Product product);
 		
-    boolean updateProductPrice(Product product);
+    void updateProductPrice(Product product);
 		
-    boolean removeProduct(Product product);
+    void removeProduct(Product product);
 }
 

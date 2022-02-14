@@ -8,53 +8,50 @@ import com.sportsshop.dao.SportsShopDaoImp;
 import com.sportsshop.model.Product;
 
 /**
- * It implements ShopServiceDao.
+ * Implements ShopServiceDao.
  * @author SathishKumarS
  *
  */
 public class ShopServiceImplementationV2 implements ShopServices {
+	
     private static final SportsShopDao SPORTS_SHOP_DAO = new SportsShopDaoImp();
 
-    public boolean addProduct(final Product product) {
-        return SPORTS_SHOP_DAO.addProduct(product);
+    public void addProduct(final Product product) {
+    	SPORTS_SHOP_DAO.addProduct(product);
     }
 
     public List<Product> selectAllProducts() {
     	final List<Product> products = SPORTS_SHOP_DAO.selectAllProducts();
     	
         if (!products.isEmpty()) {
-            return products;
+        	return products;
         }
-        throw new InvalidProductException("Product Not In Crew");
+        throw new InvalidProductException("No Such Products In Crew");
     }
 
-    public boolean updateProductPrice(final Product product) {
-    	final boolean isUpdated = SPORTS_SHOP_DAO.updateProductPrice(product);
+    public void updateProductPrice(final Product product) {
     	
-    	if (isUpdated) {
-    	    return isUpdated;
+    	if (!SPORTS_SHOP_DAO.updateProductPrice(product)) {
+        	throw new InvalidProductException("Product Not In Crew");
     	}
-    	throw new InvalidProductException("Product Not In Crew");
     }
 
-    public boolean removeProduct(final Product product) {
-    	final boolean isRemoved = SPORTS_SHOP_DAO.removeProduct(product);
+    public void removeProduct(final Product product) { 
     	
-    	if (isRemoved) {
-            return isRemoved;
+    	if (!SPORTS_SHOP_DAO.removeProduct(product)) {
+            throw new InvalidProductException("Product Not In Crew");
     	}
-        throw new InvalidProductException("Product Not In Crew");
     }
 	
     public Product selectProduct(final Product product) {
 		
-	for (final Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
-			
-	    if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
-		    && productDetails.getSize() == product.getSize()) {
-	        return productDetails;
-	    } 
-	}
+	    for (final Product productDetails : SPORTS_SHOP_DAO.selectAllProducts()) {
+	    	
+	        if (productDetails.getBrand().equals(product.getBrand()) && productDetails.getName().equals(product.getName())
+		            && String.valueOf(productDetails.getSize()).charAt(0) == product.getSize()) {
+	            return productDetails;
+	        } 
+	    }
         throw new InvalidProductException("Product Not In Crew");      
     }
 }

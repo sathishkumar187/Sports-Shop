@@ -1,108 +1,96 @@
 package com.sportsshop.view;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
+import com.sportsshop.customexceptions.CustomException.InvalidDateException;;
+
 /**
- * To validate the user inputed data.
+ * Validate the user inputed data.
  */
 public class Validations {
 
     /**
-     * It validates the selected operation.
+     * Validates the selected operation.
      * @param operation
-     * @return validated operation by integer.
+     * @return 
      */
-    static int validateOperation(final String operation) {
+    static boolean validateOperation(final String operation) {
 		
         if (operation.matches("[1-6]")) {
-            return Integer.parseInt(operation);
-        } else {
-            System.out.println("Selected Operation Is Invalid \n Re-Enter Valid Operation(Use Only 1-6)");
-            return validateOperation(SportsShop.SCANNER.next());
-        }
+            return true;
+        } 
+        return false;
     }
 
     /**
-     * It validates the product name.
+     * Validates the product name.
      * @param name
-     * @return validated name by String.
+     * @return 
      */
-    static String validateName(final String name) {
+    static boolean validateName(final String name) {
 		
-        if (name.matches("(?i)[bat|ball|stump|gloves|helmet].*(?-i)")) {
-            return name;
-        } else {
-            System.out.println("Product Is Not Available \n Select Anyone Of Them (Bat, Ball, Stump)");
-            return validateName(SportsShop.SCANNER.next());
-        }
+        if (name.matches("(?i).*-|bat|ball|stump|gloves|helmet|-.*")) {
+            return true;
+        } 
+        return false;
     }
 
      /**
-     * It validates the product brand.
+     * Validates the product brand.
      * @param brandName
-     * @return validated brand name by String.
+     * @return
      */
-    static String validateBrand(final String brandName) {
+    static boolean validateBrand(final String brandName) {
 		
-        if (brandName.matches("(?i)[ss|sg|mrf|nike|rbk].*(?-i)")) {
-            return brandName;
-        } else {
-            System.out.println("Brand Is Not Available \n Select Anyone Of Them (SS, SG, MRF, RBK, NIKE)");
-            return validateBrand(SportsShop.SCANNER.next());
-        }
+        if (brandName.matches("(?i).*-|ss|sg|mrf|nike|-.*")) {
+            return true;
+        } 
+        return false;
     }
 
      /**
-     * It validates the product price.
+     * Validates the product price.
      * @param price
-     * @return validated price by float.
+     * @return
      */
-    static double validatePrice(final String price) {
+    static boolean validatePrice(final String price) {
 		
         if (price.matches("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")) {
-            return Double.parseDouble(price);
-        } else {
-            System.out.println("Price Is Invalid \n Re-Enter Valid Price(Use Whole Numbers and Decimal Numbers Only)");
-            return validatePrice(SportsShop.SCANNER.next());
-        }
+            return true;
+        } 
+        return false;
     }
 
      /**
-     * It validates the product size.
+     * Validates the product size.
      * @param size
-     * @return validated size by char.
+     * @return
      */
-    static char validateSize(final String size) {
+    static boolean validateSize(final String size) {
 		
-        if (size.matches("(?i)[s|m|l].*(?-i)")) {
-            return size.charAt(0);
-        } else {
-            System.out.println("Size Is Invalid \n Re-Enter Valid Size(Use Only S, M, L)");
-            return validateSize(SportsShop.SCANNER.next());
-        }
+        if (size.matches("(?i).*-|s|m|l|-.*")) {
+            return true;
+        } 
+        return false;
     }
 
 	/**
-     * It validates the manufacture date of product.
+     * Validates the manufacture date of product.
      * @param inputDate
-     * @return validated manufacture date by Date
+     * @return 
      */
-    static Date validateDate(final String inputDate) {
+    static boolean validateDate(final String inputDate) {
 		
         try {
             final LocalDate date = LocalDate.parse(inputDate);
             final LocalDate todayDate = LocalDate.now();
             
             if (todayDate.plusDays(1).isAfter(date)) {
-                return Date.valueOf(date);
-            } else {
-                System.out.println("Date Is Invalid \n Re-Enter Valid Date");
-                return validateDate(SportsShop.SCANNER.next());
+                return true;
             }
+            return false;
         } catch(Exception e) {
-            System.out.println("Date Is Invalid \n Re-Enter Valid Date");
-            return validateDate(SportsShop.SCANNER.next());
+            throw new InvalidDateException("Date Format Is Invalid \n Re-Enter Valid Date");
         }
     }
 }

@@ -11,27 +11,22 @@ import com.sportsshop.model.Product;
 public class Customer {
 
     /**
-     * To select the product.
+     * Select the product.
      */
     void selectProduct() {
         final Product product = new Product();
         final ShopKeeper shopKeeper = new ShopKeeper();
 
-        System.out.println("\nMention Product Brand(SS, SG, MRF, RBK, NIKE)");
-        product.setBrand(Validations.validateBrand(SportsShop.SCANNER.next()));
-		
-        System.out.println("Mention Product Name(Bat, Ball, Stump, Gloves, Helmet)");
-        product.setName(Validations.validateName(SportsShop.SCANNER.next()));
-		
-        System.out.println("Mention Product Size(S, M, L)");
-        product.setSize(Validations.validateSize(SportsShop.SCANNER.next()));
+        product.setBrand(GetDetailsFromUser.getProductBrand());
+        product.setName(GetDetailsFromUser.getProductName());
+        product.setSize(GetDetailsFromUser.getProductSize());
         
         try {
             SportsShop.showProduct(shopKeeper.selectProduct(product));
         } catch (InvalidProductException exception) {
-            System.out.println(exception);
+        	SportsShop.LOGGER.warn(exception);
         } catch (UnableToAccessException exception) {
-            System.out.println(exception);
+        	SportsShop.LOGGER.error(exception);
         }
     }
 }
